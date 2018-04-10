@@ -29,5 +29,9 @@ module IntercomProxy
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    config.autoload_paths << "#{config.root}/services/**"
+
+    config.redis = Redis.new(url: ENV['REDIS_URL'], timeout: 1)
   end
 end
