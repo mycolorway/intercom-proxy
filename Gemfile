@@ -8,8 +8,18 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
+
+gem 'dalli', '~> 2.6.2'
+gem 'dotenv-rails', '~> 2.2.1'
+gem 'fast_blank', '~> 1.0.0'
+gem 'kgio', '~> 2.11.0'
+gem 'pry-rails', '~> 0.3.6'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
+gem 'puma_worker_killer', '~> 0.1.0'
+gem 'rest-client', '~> 2.0.2'
+gem 'sentry-raven', '~> 2.6.3'
+gem 'wannabe_bool', '~> 0.6.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
