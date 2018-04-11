@@ -10,7 +10,14 @@ class BaseService
 
   private
 
-  def redis
-    Rails.configuration.redis
+  # def redis
+  #   Rails.configuration.redis
+  # end
+
+  def synchronize(scope, &block)
+    Rails.cache.dalli.with do |dalli|
+      RemoteLock.new(RemoteLock::Adapters::Memcached.new(dalli))\
+                .synchronize(scope, &block)
+    end
   end
 end

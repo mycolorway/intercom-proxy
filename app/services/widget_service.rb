@@ -1,9 +1,11 @@
 class WidgetService < BaseService
 
   def shim_path
-    redis.set(redis_key, build_path, ex: 10.minute) \
-      unless redis.exists(redis_key)
-    redis.get(redis_key)
+    synchronize("shim_path/#{id}/lock") do
+      Rails.cache.fetch("shim_path/#{id}", expires_in: 10.minutes) do
+        build_path
+      end
+    end
   end
 
   private
@@ -22,10 +24,6 @@ class WidgetService < BaseService
     location = resp.headers[:location]
     raise MissingLocationError, resp if location.blank?
     location[%r{(?<=https://js.intercomcdn.com/shim\.)\w+(?=\.js)}]
-  end
-
-  def redis_key
-    @redis_key ||= "shim_path/#{id}"
   end
 
   class MissingRedirectError < IntercomResponseError; end

@@ -15,12 +15,15 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - redis
+      - memcached
     stdin_open: true
     tty: true
 
-  redis:
-    image: redis:3.2
+  memcached:
+    image: memcached:1.5
+
+  # redis:
+  #   image: redis:3.2
 
 volumes:
   bundle:

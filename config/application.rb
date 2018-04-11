@@ -32,6 +32,8 @@ module IntercomProxy
 
     config.autoload_paths << "#{config.root}/services/**"
 
-    config.redis = Redis.new(url: ENV['REDIS_URL'], timeout: 1)
+    config.cache_store = :dalli_store, nil, { pool_size: 32 }
+
+    # config.redis = Redis.new(url: ENV['REDIS_URL'], timeout: 1)
   end
 end

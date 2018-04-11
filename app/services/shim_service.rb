@@ -5,13 +5,15 @@ class ShimService < BaseService
   end
 
   def oss_url
-    unless redis.exists(redis_key)
-      resp = modified_asset
-      ex = resp.headers[:cache_control][/(?<=max-age=)\d+(?=,)/].to_i -
-           resp.headers[:age].to_i
-      redis.set(redis_key, upload(resp), ex: ex)
+    synchronize("shim_oss_url/#{id}/lock") do
+      value = Rails.cache.read(cache_key)
+      unless value
+        resp = modified_asset
+        value = upload(resp)
+        Rails.cache.write(cache_key, value, expires_in: ttl_from(resp))
+      end
+      value
     end
-    redis.get(redis_key)
   end
 
   private
@@ -45,12 +47,17 @@ class ShimService < BaseService
     @bucket ||= Oss::Factory.new.default_bucket
   end
 
-  def redis_key
-    @redis_key ||= "shim_oss_url/#{id}"
+  def cache_key
+    @cache_key ||= "shim_oss_url/#{id}"
   end
 
   def oss_key
     @oss_key ||= "shims/#{id}.js"
+  end
+
+  def ttl_from(resp)
+    resp.headers[:cache_control][/(?<=max-age=)\d+(?=,)/].to_i -
+      resp.headers[:age].to_i
   end
 
   class MissingCdnError < IntercomResponseError; end

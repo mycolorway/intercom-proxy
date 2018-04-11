@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.5.1'
+
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -10,13 +12,17 @@ end
 gem 'rails', '~> 5.1.6'
 
 gem 'aliyun-sdk', github: 'mycolorway/aliyun-oss-ruby-sdk'
+gem 'connection_pool', '~> 2.2.1'
+gem 'dalli', '~> 2.7.8'
 gem 'dotenv-rails', '~> 2.2.1'
 gem 'fast_blank', '~> 1.0.0'
+gem 'kgio', '~> 2.11.2'
 gem 'pry-rails', '~> 0.3.6'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 gem 'puma_worker_killer', '~> 0.1.0'
-gem 'redis-rails', '~> 5.0.2'
+# gem 'redis-rails', '~> 5.0.2'
+gem 'remote_lock', '~> 1.1.0'
 gem 'rest-client', '~> 2.0.2'
 gem 'sentry-raven', '~> 2.6.3'
 gem 'wannabe_bool', '~> 0.6.0'
