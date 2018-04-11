@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## getting started
+```
+docker-compose up --build
+```
 
-Things you may want to cover:
+## config
+default values in [.env](.env) and override them in [.env.local](.env.local)  
+see https://github.com/bkeepers/dotenv
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## cache and distribute on OSS
+will upload assets then redirect to OSS when OSS_XXX are present
