@@ -10,7 +10,7 @@ docker-compose up --build
 ```
 
 ## config
-default values in [.env](.env) and override them in [.env.local](.env.local)  
+default values in [.env](.env) and override them in .env.local
 see https://github.com/bkeepers/dotenv
 
 ## cache and distribute on OSS
