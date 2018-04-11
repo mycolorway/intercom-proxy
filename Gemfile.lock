@@ -6,6 +6,12 @@ GIT
       nokogiri (~> 1.8)
       rest-client (~> 2.0.2)
 
+GIT
+  remote: https://github.com/mycolorway/remote_lock.git
+  revision: c104403879d611a5b911797b63fc11a4446e0eb0
+  specs:
+    remote_lock (1.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -133,7 +139,6 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    remote_lock (1.1.0)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
@@ -176,7 +181,7 @@ DEPENDENCIES
   puma (~> 3.7)
   puma_worker_killer (~> 0.1.0)
   rails (~> 5.1.6)
-  remote_lock (~> 1.1.0)
+  remote_lock!
   rest-client (~> 2.0.2)
   sentry-raven (~> 2.6.3)
   tzinfo-data
