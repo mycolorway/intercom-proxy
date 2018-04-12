@@ -6,11 +6,11 @@ class FrameService < BaseService
 
   def oss_url
     synchronize("frame_oss_url/#{id}/lock") do
-      value = Rails.cache.get(cache_key)
+      value = Rails.cache.read(cache_key)
       unless value
         resp = fetch_asset
         value = upload(resp)
-        Rails.cache.set(cache_key, value, expires_in: ttl_from(resp))
+        Rails.cache.write(cache_key, value, expires_in: ttl_from(resp))
       end
       value
     end
