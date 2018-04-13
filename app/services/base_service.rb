@@ -17,7 +17,7 @@ class BaseService
   def synchronize(scope, &block)
     Rails.cache.dalli.with do |dalli|
       RemoteLock.new(RemoteLock::Adapters::Dalli.new(dalli))\
-                .synchronize(scope, &block)
+                .synchronize(scope, initial_wait: 0.1, retries: 100, &block)
     end
   end
 end
