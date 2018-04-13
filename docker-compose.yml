@@ -18,9 +18,12 @@ services:
       - memcached
     stdin_open: true
     tty: true
+    restart: unless-stopped
+    env_file: .env.local
 
   memcached:
     image: memcached:1.5
+    restart: unless-stopped
 
   # redis:
   #   image: redis:3.2
