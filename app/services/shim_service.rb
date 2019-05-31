@@ -28,8 +28,8 @@ class ShimService < BaseService
 
   def modify(resp)
     resp[%("#{CDN_HOST}/")] = %("#{ENV['APP_HOST']}/")
+    #resp.gsub %("#{CDN_HOST}/"), %("#{ENV['APP_HOST']}/")
     resp
-
     # frame_id = resp[/(?<=\+"frame\.)\w+(?=\.js")/]
     # raise 'missing frame_id' if frame_id.blank?
     # resp[%(+"frame.#{frame_id}.js")] = %(+"#{frame_path(frame_id, format: :js)}")
@@ -48,7 +48,7 @@ class ShimService < BaseService
   end
 
   def cache_key
-    @cache_key ||= "shim_oss_url/#{id}"
+    @cache_key ||= "shim_oss_url_#{Rails.env}/#{id}"
   end
 
   def oss_key
