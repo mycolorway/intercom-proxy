@@ -19,7 +19,7 @@ gem 'fast_blank', '~> 1.0.0'
 gem 'kgio', '~> 2.11.2'
 gem 'pry-rails', '~> 0.3.6'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12'
 gem 'puma_worker_killer', '~> 0.1.0'
 # gem 'redis-rails', '~> 5.0.2'
 gem 'remote_lock', github: 'mycolorway/remote_lock' # '~> 1.1.0'
